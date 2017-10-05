@@ -42,7 +42,7 @@ def preprocess_data(data, discounting_type):
 
 
 data_root = "../data"
-raw_df = pd.read_csv(join(data_root, 'discounting_data_raw.csv'))
+raw_df = pd.read_csv(join(data_root, 'raw_data.csv'))
 raw_df = raw_df[
     ['partNum', 'domainTask', 'domainReward', 'Choices.RESP', 'magL', 'magR', 'LevelL', 'LevelR', 'cost1', 'cost2']]
 
@@ -120,4 +120,4 @@ for reward_type in reward_types:
             merged_df.update(pd.DataFrame(scaled_data, index=indicies, columns=[col_name]))
 
 print("merged df cols = {}".format(merged_df.columns.values))
-merged_df.to_csv(join(data_root, "merged_data_all.csv"))
+merged_df.to_csv(join(data_root, "preprocessed_data.csv"))

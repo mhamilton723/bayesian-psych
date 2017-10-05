@@ -41,7 +41,7 @@ def run_experiments(discount_type, model_name, normalize):
         raise ValueError("normalize={} and discount_type={} not supported".format(normalize, discount_type))
 
     # Load data
-    data_file = join(data_path, "merged_data_all.csv".format(discount_type))
+    data_file = join(data_path, "preprocessed_data.csv".format(discount_type))
     merged_df = pd.read_csv(data_file)
     merged_df = merged_df[merged_df['discount_type'] == discount_type]
 

@@ -97,6 +97,8 @@ ENV/
 
 
 .idea
-data
+data/raw_data.csv
+data/metadata_raw_1.csv
+data/metadata_raw_2.csv
 results
 

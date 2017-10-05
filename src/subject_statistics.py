@@ -5,14 +5,14 @@ matplotlib.use('agg')
 from os.path import join
 from collections import Counter
 
-metadata1 = pd.read_csv(join('..', 'data', 'subject_data.csv'))
+metadata1 = pd.read_csv(join('..', 'data', 'metadata_raw_2.csv'))
 metadata1['Subnum'] = metadata1['partNum']
 metadata1 = metadata1[['Subnum', 'Age', 'Sex']].drop_duplicates()
 
-metadata2 = pd.read_csv(join('..', 'data', 'metadata.csv'))
+metadata2 = pd.read_csv(join('..', 'data', 'metadata_raw_1.csv'))
 metadata2['Subnum'] = metadata2['Subnum'].apply(lambda s: int(s[2:]))
 
-raw_data = pd.read_csv(join('..', 'data', 'merged_data_all.csv'))
+raw_data = pd.read_csv(join('..', 'data', 'preprocessed_data.csv'))
 participants = raw_data[['participant']].drop_duplicates().sort_values(['participant'])
 
 metadata = pd.concat([metadata1, metadata2]) \
@@ -27,6 +27,9 @@ for k, v in c.items():
 
 merged = metadata.merge(participants, left_on="Subnum", right_on="participant")[
     metadata.columns.values].drop_duplicates(['Subnum'])  # type: pd.DataFrame
+print(merged)
+merged.to_csv(join('..', 'data', 'metadata.csv'))
+
 merged['IsFemale'] = merged['Sex'].apply(lambda s: int(s == 'F'))
 
 print(merged.describe())

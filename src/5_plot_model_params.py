@@ -46,7 +46,7 @@ model_to_parameters = {
 discounting_types = ["TIME", "PROB"]
 norms = [True, False]
 
-metadata = pd.read_csv(join('..', 'data', 'subject_data.csv'))
+metadata = pd.read_csv(join('..', 'data', 'metadata_raw_2.csv'))
 metadata['Subnum'] = metadata['partNum']
 metadata = metadata[['Subnum', 'Age', 'Sex']].drop_duplicates()
 metadata.set_index(metadata['Subnum'])
